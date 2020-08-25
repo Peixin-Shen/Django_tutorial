@@ -28,9 +28,9 @@
     <tbody>
     {% for object in object_list %}
     <tr>
-        <td>{{ object.title }}</td>
-        <td>{{ object.content }}</td>
-        <td>{{ object.editTime }}</td>
+        <td><a href="{% url 'BlogUpdate' object.pk %}">{{ object.title }}</a></td>
+        <td><a>{{ object.content }}</a></td>
+        <td><a>{{ object.editTime }}</a></td>
     </tr>
     {% endfor %}
     </tbody>

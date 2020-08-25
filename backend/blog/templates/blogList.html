@@ -12,10 +12,15 @@
     </style>
 </head>
 <body>
-
+{% if user.is_authenticated %}
+Hello, {{ user.username }}
+{% endif %}
 <div style="margin: 10px 0px;">
     <a href="{% url 'BlogCreate' %}">
         <button>New Blog</button>
+    </a>
+    <a href="{% url 'Logout' %}">
+        <button>Logout</button>
     </a>
 </div>
 
@@ -27,11 +32,11 @@
     </thead>
     <tbody>
     {% for object in object_list %}
-    <tr>
-        <td><a href="{% url 'BlogUpdate' object.pk %}">{{ object.title }}</a></td>
-        <td><a>{{ object.content }}</a></td>
-        <td><a>{{ object.editTime }}</a></td>
-    </tr>
+        <tr>
+            <td><a href="{% url 'BlogUpdate' object.pk %}">{{ object.title }}</a></td>
+            <td><a>{{ object.content }}</a></td>
+            <td><a>{{ object.editTime }}</a></td>
+        </tr>
     {% endfor %}
     </tbody>
 </table>

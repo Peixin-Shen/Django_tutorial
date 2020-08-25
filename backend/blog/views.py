@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView
 from .models import Blog
 from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin # 最基本的權限
 from rest_framework.viewsets import ModelViewSet
 from .serializers import BlogSerializer
 
@@ -22,7 +23,7 @@ class BlogList(ListView):
     model = Blog
     template_name = 'blogList.html'
     
-class BlogCreate(CreateView):
+class BlogCreate(LoginRequiredMixin, CreateView):
     model = Blog
     fields = '__all__'
     template_name = 'form.html'
@@ -30,7 +31,7 @@ class BlogCreate(CreateView):
     def get_success_url(self):
         return reverse('BlogList')
 
-class BlogUpdate(UpdateView):
+class BlogUpdate(LoginRequiredMixin, UpdateView):
     model = Blog
     fields = '__all__'
     template_name = 'form.html'

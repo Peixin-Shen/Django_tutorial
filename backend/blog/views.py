@@ -1,6 +1,7 @@
-#from django.shortcuts import render
+from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.generic import ListView
 from .models import Blog
 from rest_framework.viewsets import ModelViewSet
 from .serializers import BlogSerializer
@@ -15,3 +16,7 @@ def index(request):
 class BlogViewSet(ModelViewSet):
     serializer_class = BlogSerializer
     queryset = Blog.objects.all()
+
+class BlogList(ListView):
+    model = Blog
+    template_name = 'blogList.html'
